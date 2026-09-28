@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Télécompagnie - Moteur de recherche</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #0f172a; color: #f8fafc; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px; }
+        .header { margin: 40px 0 20px 0; text-align: center; }
+        .header h1 { font-size: 2.5rem; color: #38bdf8; letter-spacing: -1px; }
+        .search-box { width: 100%; max-width: 600px; display: flex; gap: 10px; margin-bottom: 30px; }
+        input[type="text"] { flex: 1; padding: 14px 18px; border-radius: 10px; border: 1px solid #334155; background: #1e293b; color: #fff; font-size: 1rem; outline: none; }
+        input[type="text"]:focus { border-color: #38bdf8; }
+        button { padding: 14px 24px; border-radius: 10px; border: none; background: #0284c7; color: white; font-weight: bold; font-size: 1rem; cursor: pointer; }
+        button:hover { background: #0369a1; }
+        .results { width: 100%; max-width: 600px; list-style: none; }
+        .result-item { background: #1e293b; padding: 16px; border-radius: 10px; margin-bottom: 12px; border: 1px solid #334155; }
+        .result-item a { color: #38bdf8; text-decoration: none; font-size: 1.1rem; font-weight: bold; }
+        .result-item a:hover { text-decoration: underline; }
+        .result-item p { color: #94a3b8; font-size: 0.95rem; margin-top: 6px; line-height: 1.4; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Télécompagnie</h1>
+    </div>
+    <form class="search-box" action="/" method="GET">
+        <input type="text" name="q" value="{{ query }}" placeholder="Rechercher sur le web..." required>
+        <button type="submit">Chercher</button>
+    </form>
+    <ul class="results">
+        {% for r in results %}
+        <li class="result-item">
+            <a href="{{ r.link }}" target="_blank">{{ r.title }}</a>
+            <p>{{ r.snippet }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
